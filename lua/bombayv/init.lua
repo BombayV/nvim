@@ -1,14 +1,19 @@
--- Load core modules
-require("bombayv.core.set")
-require("bombayv.core.keymaps")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Load plugins modules
-require("bombayv.plugins.packer")
-require("bombayv.plugins.palette")
-require("bombayv.plugins.telescope")
-require("bombayv.plugins.treesitter")
-require("bombayv.plugins.harpoon")
-require("bombayv.plugins.undotree")
-require("bombayv.plugins.fugitive")
-require("bombayv.plugins.mason")
-require("bombayv.plugins.lsp")
+require("lazy").setup({
+  spec = "bombayv.lazy",
+  change_detection = {
+    notify = true
+  }
+})
