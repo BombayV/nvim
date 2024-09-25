@@ -80,6 +80,7 @@ return {
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.close(),
       }),
       sources = cmp.config.sources({
         { name = "copilot" },
